@@ -260,6 +260,23 @@ export default function Home() {
             label: payload.label,
           });
         }
+
+        // Dynamically increment KPI counts live
+        setDashData((prev: any) => {
+          const currentKpis = prev?.kpis || DEFAULT_DASHBOARD_DATA.kpis;
+          const isSuspicious = mappedEvt.risk_score >= 60;
+          const isHighRisk = mappedEvt.risk_score >= 80;
+          return {
+            ...prev,
+            kpis: {
+              ...currentKpis,
+              total_events: (currentKpis.total_events || 100000) + 1,
+              normal_sessions: !isSuspicious ? (currentKpis.normal_sessions || 97000) + 1 : currentKpis.normal_sessions,
+              suspicious_sessions: isSuspicious ? (currentKpis.suspicious_sessions || 3000) + 1 : currentKpis.suspicious_sessions,
+              high_risk_alerts: isHighRisk ? (currentKpis.high_risk_alerts || 142) + 1 : currentKpis.high_risk_alerts,
+            },
+          };
+        });
       };
       socket.onerror = () => {
         startFallbackTicker();
@@ -307,6 +324,23 @@ export default function Home() {
             label: newEvt.label,
           });
         }
+
+        // Dynamically increment KPI counts live in fallback mode
+        setDashData((prev: any) => {
+          const currentKpis = prev?.kpis || DEFAULT_DASHBOARD_DATA.kpis;
+          const isSuspicious = score >= 60;
+          const isHighRisk = score >= 80;
+          return {
+            ...prev,
+            kpis: {
+              ...currentKpis,
+              total_events: (currentKpis.total_events || 100000) + 1,
+              normal_sessions: !isSuspicious ? (currentKpis.normal_sessions || 97000) + 1 : currentKpis.normal_sessions,
+              suspicious_sessions: isSuspicious ? (currentKpis.suspicious_sessions || 3000) + 1 : currentKpis.suspicious_sessions,
+              high_risk_alerts: isHighRisk ? (currentKpis.high_risk_alerts || 142) + 1 : currentKpis.high_risk_alerts,
+            },
+          };
+        });
       }, 1500);
     }
 
