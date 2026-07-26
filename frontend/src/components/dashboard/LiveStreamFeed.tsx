@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Radio, AlertTriangle, ShieldCheck, Cpu } from 'lucide-react';
 
 export interface StreamEvent {
-  id: number;
+  id: number | string;
   timestamp: string;
   entity_id: string;
   department: string;
@@ -18,6 +18,14 @@ export interface StreamEvent {
   color: string;
   reasons: string[];
   recommendations: string[];
+  detection_reason?: string;
+  breakdown?: {
+    isolation_forest_factor: number;
+    xgboost_factor: number;
+    geo_anomaly_factor: number;
+    device_novelty_factor: number;
+    time_anomaly_factor: number;
+  };
 }
 
 interface LiveStreamFeedProps {
