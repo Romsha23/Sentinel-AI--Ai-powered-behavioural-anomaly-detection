@@ -1,12 +1,21 @@
 # 🛡️ Sentinel AI — Behavioural Anomaly Detection Platform for Cybersecurity
 
+[![Live Deployment](https://img.shields.io/badge/🚀%20Live%20Demo-Vercel-000000.svg?style=for-the-badge&logo=vercel&logoColor=white)](https://sentinel-ai-ai-powered-behavioural-anomaly-det.vercel.app/)
+[![Backend API](https://img.shields.io/badge/⚡%20Backend%20API-Render-009688.svg?style=for-the-badge&logo=render&logoColor=white)](https://sentinel-ai-backend.onrender.com/)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-3776AB.svg?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![Next.js 14](https://img.shields.io/badge/next.js-14+-000000.svg?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-009688.svg?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
-[![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-3.4+-38B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
 **Sentinel AI** is an enterprise-grade, full-stack cybersecurity platform designed for **Autonomous Behavioral Threat Detection and Incident Response**. It models normal user and device behaviors, ingests sub-second access telemetry via WebSockets, classifies multi-stage cyber attacks, and calculates explainable 0–100 risk scores with actionable security operations workflows.
+
+---
+
+## 🌐 Live Deployment Links
+
+- **🚀 Frontend SOC Dashboard (Vercel)**: [https://sentinel-ai-ai-powered-behavioural-anomaly-det.vercel.app/](https://sentinel-ai-ai-powered-behavioural-anomaly-det.vercel.app/)
+- **⚡ Backend API Docs & WebSockets (Render)**: [https://sentinel-ai-backend.onrender.com/docs](https://sentinel-ai-backend.onrender.com/docs)
+
 
 ---
 
