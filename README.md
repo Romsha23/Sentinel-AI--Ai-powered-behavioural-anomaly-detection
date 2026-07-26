@@ -13,9 +13,8 @@
 
 ## 🌐 Live Deployment Links
 
-- **🚀 Frontend SOC Dashboard (Vercel)**: [https://sentinel-ai-ai-powered-behavioural-anomaly-det.vercel.app/](sentinel-ai-ai-powered-behavioural.vercel.app
-)
-- **⚡ Backend API Docs & WebSockets (Render)**: [https://sentinel-ai-backend.onrender.com/docs]([https://sentinel-ai-backend.onrender.com/docs](https://sentinel-ai-ai-powered-behavioural.onrender.com))
+- **🚀 Frontend SOC Dashboard (Vercel)**:[sentinel-ai-ai-powered-behavioural.vercel.app]
+- **⚡ Backend API Docs & WebSockets (Render)**: [https://sentinel-ai-ai-powered-behavioural.onrender.com]
 
 
 ---
