@@ -32,3 +32,17 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
 
 def get_password_hash(password: str) -> str:
     return hashlib.sha256(password.encode()).hexdigest()
+
+
+def decode_access_token(token: str) -> Optional[dict]:
+    try:
+        from jose import jwt, JWTError
+        return jwt.decode(token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM])
+    except ImportError:
+        try:
+            import jwt as pyjwt
+            return pyjwt.decode(token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM])
+        except Exception:
+            return None
+    except Exception:
+        return None

@@ -8,12 +8,28 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        smartnet: {
+          bg: '#14052b',
+          bgDark: '#0e031f',
+          card: '#220e3f',
+          cardHover: '#2d1452',
+          border: 'rgba(168, 85, 247, 0.25)',
+          borderGlow: 'rgba(217, 70, 239, 0.4)',
+          violet: '#a855f7',
+          purple: '#9333ea',
+          fuchsia: '#d946ef',
+          pink: '#ec4899',
+          blue: '#3b82f6',
+          cyan: '#06b6d4',
+          textMuted: '#9482b6',
+          textLight: '#e9d8a6',
+        },
         cyber: {
-          bg: '#070A13',
-          card: '#0F172A',
-          cardHover: '#1E293B',
-          border: '#1E293B',
-          accent: '#3B82F6',
+          bg: '#14052b',
+          card: '#220e3f',
+          cardHover: '#2d1452',
+          border: 'rgba(168, 85, 247, 0.25)',
+          accent: '#a855f7',
           cyan: '#06B6D4',
           emerald: '#10B981',
           amber: '#F59E0B',
@@ -23,7 +39,7 @@ module.exports = {
         }
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
       }
     },

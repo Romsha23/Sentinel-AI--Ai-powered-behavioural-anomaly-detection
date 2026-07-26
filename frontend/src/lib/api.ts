@@ -17,9 +17,17 @@ export const apiClient = axios.create({
   },
 });
 
+if (typeof window !== 'undefined') {
+  const stored = localStorage.getItem('sentinel_token');
+  if (stored) {
+    apiClient.defaults.headers.common['Authorization'] = `Bearer ${stored}`;
+  }
+}
+
 export const API_ENDPOINTS = {
   dashboard: '/dashboard/',
   alerts: '/alerts/',
+  alert: (id: string) => `/alerts/${id}`,
   entities: (id: string) => `/entities/${id}`,
   analytics: '/analytics/',
   generateData: '/generate-data',
@@ -28,4 +36,30 @@ export const API_ENDPOINTS = {
   replay: '/replay/',
   reportPdf: '/report/pdf',
   login: '/auth/login',
+  register: '/auth/register',
+  profile: '/auth/me',
+  updateProfile: '/auth/me',
+  updatePassword: '/auth/me/password',
 };
+
+export interface AlertQueryParams {
+  search?: string;
+  priority?: string;
+  attack_type?: string;
+  status?: string;
+  sort_by?: string;
+  sort_order?: string;
+  limit?: number;
+  offset?: number;
+}
+
+export function buildAlertQuery(params: AlertQueryParams): string {
+  const q = new URLSearchParams();
+  Object.entries(params).forEach(([key, val]) => {
+    if (val !== undefined && val !== '' && val !== 'ALL') {
+      q.set(key, String(val));
+    }
+  });
+  const qs = q.toString();
+  return qs ? `?${qs}` : '';
+}

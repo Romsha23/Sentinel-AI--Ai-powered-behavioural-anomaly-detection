@@ -19,35 +19,9 @@
     overflow-x: hidden;
     transition: background-color 0.3s, color 0.3s;
   }
-
-  /* Light mode (keep existing toggle working, just shift to soft lavender) */
-  html.light body {
-    background-color: #f5f0ff;
-    background-image: none;
-    color: #1e1b4b;
-  }
-
-  html.light .glass-panel {
-    background: rgba(255, 255, 255, 0.88);
-    border-color: rgba(168, 85, 247, 0.28);
-    color: #1e1b4b;
-  }
-
-  html.light .text-white {
-    color: #1e1b4b;
-  }
-
-  html.light .bg-cyber-bg,
-  html.light .bg-smartnet-bg {
-    background-color: #f5f0ff;
-  }
 }
 
-/* ─── Card / Panel ───────────────────────────────────────────────────────── */
-/*
-  Matches the image:  slightly-translucent deep-violet card on dark purple bg,
-  with a subtle violet border glow.
-*/
+/* ─── Dark Mode Panel ────────────────────────────────────────────────────── */
 .glass-panel {
   background: linear-gradient(
     135deg,
@@ -73,8 +47,6 @@
   transform: translateY(-1px);
 }
 
-/* ─── Glow utilities ─────────────────────────────────────────────────────── */
-/* Keep existing class names so no component breaks */
 .cyber-glow-blue {
   box-shadow: 0 0 22px rgba(168, 85, 247, 0.40);
 }
@@ -87,24 +59,17 @@
   box-shadow: 0 0 22px rgba(16, 185, 129, 0.30);
 }
 
-/* ─── Background utility ─────────────────────────────────────────────────── */
 .bg-cyber-bg,
 .bg-smartnet-bg {
   background-color: #1a0533;
 }
 
-/* ─── Navbar override ────────────────────────────────────────────────────── */
-/*
-  Navbar uses bg-[#070A13]/90 hardcoded — override it so it stays purple.
-  We target the header directly without touching TSX.
-*/
 header {
   background: rgba(26, 5, 51, 0.92) !important;
   border-bottom-color: rgba(168, 85, 247, 0.22) !important;
   backdrop-filter: blur(16px);
 }
 
-/* ─── Recharts tooltip ───────────────────────────────────────────────────── */
 .recharts-tooltip-wrapper .recharts-default-tooltip {
   background: rgba(40, 10, 78, 0.95) !important;
   border-color: rgba(168, 85, 247, 0.35) !important;
@@ -112,12 +77,10 @@ header {
   color: #f1f5f9 !important;
 }
 
-/* ─── Table rows ─────────────────────────────────────────────────────────── */
 tbody tr:hover {
   background-color: rgba(88, 28, 135, 0.30) !important;
 }
 
-/* ─── Inputs & selects ───────────────────────────────────────────────────── */
 input, select, textarea {
   background-color: rgba(40, 10, 78, 0.70) !important;
   border-color: rgba(168, 85, 247, 0.30) !important;
@@ -132,23 +95,16 @@ input:focus, select:focus, textarea:focus {
   outline: none !important;
 }
 
-/* ─── Modal backdrops ────────────────────────────────────────────────────── */
 .fixed.inset-0.bg-black\/80,
 .fixed.inset-0.bg-black\/85 {
   background: rgba(14, 3, 31, 0.85) !important;
 }
 
-/* ─── Scrollbar ──────────────────────────────────────────────────────────── */
-::-webkit-scrollbar        { width: 5px; height: 5px; }
-::-webkit-scrollbar-track  { background: rgba(26, 5, 51, 0.8); }
-::-webkit-scrollbar-thumb  { background: rgba(168, 85, 247, 0.45); border-radius: 9999px; }
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: rgba(26, 5, 51, 0.8); }
+::-webkit-scrollbar-thumb { background: rgba(168, 85, 247, 0.45); border-radius: 9999px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(217, 70, 239, 0.75); }
 
-/* ─── Accent colour overrides for existing Tailwind classes ──────────────── */
-/*
-  The codebase uses slate-800/slate-900 for panel backgrounds.
-  Re-map them to deep-purple equivalents without changing TSX.
-*/
 .bg-slate-900,
 .bg-slate-900\/80,
 .bg-slate-900\/90 {
@@ -177,7 +133,6 @@ input:focus, select:focus, textarea:focus {
   border-color: rgba(168, 85, 247, 0.15) !important;
 }
 
-/* Active nav tab pill stays violet */
 .bg-blue-600 {
   background-color: #7c3aed !important;
 }
@@ -191,10 +146,125 @@ input:focus, select:focus, textarea:focus {
   border-color: rgba(124, 58, 237, 0.40) !important;
 }
 
-/* Replay button keeps amber→rose gradient — no change needed */
-
-/* ─── Polar / Radar chart grid ───────────────────────────────────────────── */
 .recharts-polar-grid-concentric-polygon,
 .recharts-polar-grid-angle line {
   stroke: rgba(168, 85, 247, 0.20) !important;
 }
+
+/* ══════════════════════════════════════════════════════════════════════════ */
+/* ─── COMPLETE LIGHT MODE OVERRIDES (`html.light`) ───────────────────────── */
+/* ══════════════════════════════════════════════════════════════════════════ */
+
+html.light body {
+  background-color: #f8fafc !important;
+  background-image: none !important;
+  color: #0f172a !important;
+}
+
+html.light header {
+  background: #ffffff !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  color: #0f172a !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+}
+
+html.light main {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+html.light .glass-panel,
+html.light .smartnet-card,
+html.light .rounded-2xl,
+html.light .rounded-3xl,
+html.light div[class*="bg-[#220e3f]"],
+html.light div[class*="bg-[#28114b]"],
+html.light div[class*="bg-[#2b134d]"],
+html.light div[class*="bg-[#14052b]"],
+html.light div[class*="bg-[#1a0533]"],
+html.light div[class*="bg-slate-900"],
+html.light div[class*="bg-slate-950"],
+html.light div[class*="bg-slate-800"] {
+  background: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  color: #0f172a !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05) !important;
+}
+
+html.light .text-white,
+html.light .text-slate-100,
+html.light .text-slate-200,
+html.light h1,
+html.light h2,
+html.light h3,
+html.light h4 {
+  color: #0f172a !important;
+}
+
+html.light .text-slate-400,
+html.light .text-slate-300,
+html.light .text-purple-200,
+html.light .text-purple-300,
+html.light .text-purple-200\/70,
+html.light .text-purple-200\/80,
+html.light .text-purple-300\/60,
+html.light p {
+  color: #475569 !important;
+}
+
+html.light .bg-cyber-bg,
+html.light .bg-smartnet-bg {
+  background-color: #f8fafc !important;
+}
+
+html.light nav {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+}
+
+html.light nav button {
+  color: #475569 !important;
+}
+
+html.light nav button:hover {
+  background-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+html.light input,
+html.light select,
+html.light textarea {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+html.light input::placeholder,
+html.light textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+html.light tbody tr {
+  border-bottom-color: #f1f5f9 !important;
+}
+
+html.light tbody tr:hover {
+  background-color: #f1f5f9 !important;
+}
+
+html.light .recharts-tooltip-wrapper .recharts-default-tooltip {
+  background: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+html.light .recharts-cartesian-grid line,
+html.light .recharts-polar-grid-concentric-polygon,
+html.light .recharts-polar-grid-angle line {
+  stroke: #e2e8f0 !important;
+}
+
+html.light ::-webkit-scrollbar-track { background: #f1f5f9; }
+html.light ::-webkit-scrollbar-thumb { background: #cbd5e1; }
+html.light ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
