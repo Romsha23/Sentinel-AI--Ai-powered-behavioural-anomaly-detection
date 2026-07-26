@@ -319,7 +319,7 @@ export default function Home() {
   const kpis = dashData?.kpis || DEFAULT_DASHBOARD_DATA.kpis;
 
   return (
-    <div className="min-h-screen bg-[#14052b] text-slate-100 flex flex-col font-sans selection:bg-pink-500 selection:text-white">
+    <div className="min-h-screen bg-[#070c1a] text-slate-100 flex flex-col font-sans selection:bg-cyan-500 selection:text-white">
       <Navbar
         activeTab={activeTab}
         setActiveTab={setActiveTab}

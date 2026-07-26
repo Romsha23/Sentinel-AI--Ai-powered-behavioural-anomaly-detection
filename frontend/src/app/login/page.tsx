@@ -38,26 +38,26 @@ export default function LoginPage() {
       <ParticleCanvas />
 
       {/* Floating Status Badge 1: Top Left */}
-      <div className="absolute top-6 left-6 z-10 hidden sm:flex items-center space-x-2.5 px-4 py-2 rounded-2xl bg-[#220e3f]/80 border border-purple-500/30 backdrop-blur-xl shadow-xl text-xs">
+      <div className="absolute top-6 left-6 z-10 hidden sm:flex items-center space-x-2.5 px-4 py-2 rounded-2xl bg-[#101d36]/80 border border-blue-500/30 backdrop-blur-xl shadow-xl text-xs">
         <span className="font-bold text-white">Autonomous SOC Engine</span>
-        <span className="flex items-center space-x-1 text-pink-400 font-sans text-[11px]">
-          <span className="h-2 w-2 rounded-full bg-pink-400 animate-pulse"></span>
+        <span className="flex items-center space-x-1 text-cyan-400 font-sans text-[11px]">
+          <span className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse"></span>
           <span>100% Operational</span>
         </span>
       </div>
 
       {/* Floating Status Badge 2: Top Right */}
-      <div className="absolute top-6 right-6 z-10 hidden sm:flex items-center space-x-2 px-4 py-2 rounded-2xl bg-[#220e3f]/80 border border-purple-500/30 backdrop-blur-xl shadow-xl text-xs">
-        <Zap className="h-4 w-4 text-pink-400" />
+      <div className="absolute top-6 right-6 z-10 hidden sm:flex items-center space-x-2 px-4 py-2 rounded-2xl bg-[#101d36]/80 border border-blue-500/30 backdrop-blur-xl shadow-xl text-xs">
+        <Zap className="h-4 w-4 text-cyan-400" />
         <div>
           <div className="font-bold text-white leading-tight">Stream Ingestion</div>
-          <div className="text-[10px] text-purple-200/80">1,420 Events/sec (0.8ms)</div>
+          <div className="text-[10px] text-blue-200/80">1,420 Events/sec (0.8ms)</div>
         </div>
       </div>
 
       {/* Floating Status Badge 3: Bottom Left */}
-      <div className="absolute bottom-6 left-6 z-10 hidden sm:flex items-center space-x-3 px-4 py-2.5 rounded-2xl bg-[#220e3f]/80 border border-purple-500/30 backdrop-blur-xl shadow-xl text-xs">
-        <div className="p-1.5 rounded-xl bg-purple-900/50 border border-purple-500/30 text-purple-300">
+      <div className="absolute bottom-6 left-6 z-10 hidden sm:flex items-center space-x-3 px-4 py-2.5 rounded-2xl bg-[#101d36]/80 border border-blue-500/30 backdrop-blur-xl shadow-xl text-xs">
+        <div className="p-1.5 rounded-xl bg-blue-900/50 border border-blue-500/30 text-cyan-300">
           <Lock className="h-4 w-4" />
         </div>
         <div>

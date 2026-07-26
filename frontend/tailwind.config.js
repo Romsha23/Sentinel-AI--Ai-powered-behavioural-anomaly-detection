@@ -8,41 +8,25 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        smartnet: {
-          bg: '#14052b',
-          bgDark: '#0e031f',
-          card: '#220e3f',
-          cardHover: '#2d1452',
-          border: 'rgba(168, 85, 247, 0.25)',
-          borderGlow: 'rgba(217, 70, 239, 0.4)',
-          violet: '#a855f7',
-          purple: '#9333ea',
-          fuchsia: '#d946ef',
-          pink: '#ec4899',
-          blue: '#3b82f6',
-          cyan: '#06b6d4',
-          textMuted: '#9482b6',
-          textLight: '#e9d8a6',
-        },
         cyber: {
-          bg: '#14052b',
-          card: '#220e3f',
-          cardHover: '#2d1452',
-          border: 'rgba(168, 85, 247, 0.25)',
-          accent: '#a855f7',
-          cyan: '#06B6D4',
-          emerald: '#10B981',
-          amber: '#F59E0B',
-          rose: '#EF4444',
-          purple: '#A855F7',
-          pink: '#EC4899',
-        }
+          bg: '#070c1a',
+          card: '#101d36',
+          cardHover: '#16294d',
+          border: 'rgba(59, 130, 246, 0.25)',
+          accent: '#3b82f6',
+          cyan: '#06b6d4',
+          sky: '#38bdf8',
+          emerald: '#10b981',
+          amber: '#f59e0b',
+          rose: '#ef4444',
+          purple: '#8b5cf6',
+        },
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
-      }
+      },
     },
   },
   plugins: [],
-}
+};
