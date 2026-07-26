@@ -35,8 +35,28 @@ const PAGE_SIZE = 5;
 
 const SAMPLE_ALERTS: AlertItem[] = [
   {
-    id: 'ALT-8921',
+    id: 'ALT-8920',
     timestamp: new Date().toISOString(),
+    entity_id: 'DEV-ROOT-01',
+    risk_score: 99,
+    attack_type: 'Low-and-Slow Exfiltration',
+    priority: 'Urgent',
+    status: 'New',
+    assigned_analyst: 'SOC Lead Alex',
+    notes: 'EMERGENCY: Encrypted data exfiltration payload detected outbound to unapproved C2 server.',
+    reasons: ['High bandwidth velocity spike', 'Zero-day payload signature match', 'C2 IP beaconing'],
+    recommendations: ['Isolate network gateway immediately', 'Revoke domain admin keys', 'Execute IR playbook #4'],
+    breakdown: {
+      isolation_forest_factor: 40,
+      xgboost_factor: 30,
+      geo_anomaly_factor: 15,
+      device_novelty_factor: 9,
+      time_anomaly_factor: 5,
+    },
+  },
+  {
+    id: 'ALT-8921',
+    timestamp: new Date(Date.now() - 5 * 60000).toISOString(),
     entity_id: 'USR-ADMIN-04',
     risk_score: 92,
     attack_type: 'Brute Force',
@@ -132,6 +152,26 @@ const SAMPLE_ALERTS: AlertItem[] = [
       geo_anomaly_factor: 14,
       device_novelty_factor: 8,
       time_anomaly_factor: 5,
+    },
+  },
+  {
+    id: 'ALT-8926',
+    timestamp: new Date(Date.now() - 360 * 60000).toISOString(),
+    entity_id: 'USR-AUDIT-02',
+    risk_score: 18,
+    attack_type: 'Baseline Verification',
+    priority: 'Informational',
+    status: 'Resolved',
+    assigned_analyst: 'Automated SOC Bot',
+    notes: 'Routine scheduled security posture audit & compliance scan completed.',
+    reasons: ['Scheduled audit task', 'Sanctioned IP range', 'Valid MFA token'],
+    recommendations: ['Archive audit log'],
+    breakdown: {
+      isolation_forest_factor: 5,
+      xgboost_factor: 4,
+      geo_anomaly_factor: 3,
+      device_novelty_factor: 3,
+      time_anomaly_factor: 3,
     },
   },
 ];
@@ -271,12 +311,14 @@ export const AlertQueue: React.FC<AlertQueueProps> = ({ onSelectEntity }) => {
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
-          <select value={priorityFilter} onChange={(e) => setPriorityFilter(e.target.value)} className="rounded-xl bg-slate-900 border border-slate-700 px-3 py-2 text-xs text-white focus:outline-none light:bg-white light:text-slate-900">
+          <select value={priorityFilter} onChange={(e) => setPriorityFilter(e.target.value)} className="rounded-xl bg-slate-900 border border-slate-700 px-3 py-2 text-xs text-white focus:outline-none light:bg-white light:text-slate-900 font-mono">
             <option value="ALL">All Priorities</option>
-            <option value="Critical">Critical</option>
-            <option value="High">High</option>
-            <option value="Medium">Medium</option>
-            <option value="Low">Low</option>
+            <option value="Urgent">Urgent (95-100)</option>
+            <option value="Critical">Critical (85-94)</option>
+            <option value="High">High (70-84)</option>
+            <option value="Medium">Medium (50-69)</option>
+            <option value="Low">Low (30-49)</option>
+            <option value="Informational">Informational (0-29)</option>
           </select>
           <select value={attackFilter} onChange={(e) => setAttackFilter(e.target.value)} className="rounded-xl bg-slate-900 border border-slate-700 px-3 py-2 text-xs text-white focus:outline-none light:bg-white light:text-slate-900">
             <option value="ALL">All Attack Types</option>
@@ -286,6 +328,7 @@ export const AlertQueue: React.FC<AlertQueueProps> = ({ onSelectEntity }) => {
             <option value="Lateral Movement">Lateral Movement</option>
             <option value="Device Spoofing">Device Spoofing</option>
             <option value="Low-and-Slow Exfiltration">Low-and-Slow Exfil</option>
+            <option value="Baseline Verification">Baseline Audit</option>
           </select>
           <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)} className="rounded-xl bg-slate-900 border border-slate-700 px-3 py-2 text-xs text-white focus:outline-none light:bg-white light:text-slate-900">
             <option value="ALL">All Statuses</option>
@@ -345,10 +388,13 @@ export const AlertQueue: React.FC<AlertQueueProps> = ({ onSelectEntity }) => {
                     <td className="py-3.5 px-4 font-mono font-bold text-rose-400">{alert.risk_score}</td>
                     <td className="py-3.5 px-4">{alert.attack_type}</td>
                     <td className="py-3.5 px-4">
-                      <span className={`inline-block rounded-md px-2 py-0.5 text-[10px] font-bold uppercase ${
-                        alert.priority === 'Critical' ? 'bg-rose-950 text-rose-300 border border-rose-800' :
-                        alert.priority === 'High' ? 'bg-amber-950 text-amber-300 border border-amber-800' :
-                        'bg-emerald-950 text-emerald-300 border border-emerald-800'
+                      <span className={`inline-block rounded-md px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider ${
+                        alert.priority === 'Urgent' ? 'bg-fuchsia-950 text-fuchsia-300 border border-fuchsia-500 shadow-sm shadow-fuchsia-500/20' :
+                        alert.priority === 'Critical' ? 'bg-rose-950 text-rose-300 border border-rose-600' :
+                        alert.priority === 'High' ? 'bg-amber-950 text-amber-300 border border-amber-600' :
+                        alert.priority === 'Medium' ? 'bg-yellow-950 text-yellow-300 border border-yellow-600' :
+                        alert.priority === 'Low' ? 'bg-sky-950 text-sky-300 border border-sky-600' :
+                        'bg-slate-900 text-slate-300 border border-slate-700'
                       }`}>{alert.priority}</span>
                     </td>
                     <td className="py-3.5 px-4">{alert.status}</td>
