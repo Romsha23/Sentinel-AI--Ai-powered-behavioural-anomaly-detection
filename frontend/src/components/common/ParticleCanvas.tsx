@@ -40,14 +40,14 @@ export const ParticleCanvas: React.FC = () => {
         vx: (Math.random() - 0.5) * 0.8,
         vy: (Math.random() - 0.5) * 0.8,
         radius: Math.random() * 2 + 1,
-        color: i % 2 === 0 ? 'rgba(59, 130, 246, 0.85)' : 'rgba(6, 182, 212, 0.85)',
+        color: i % 2 === 0 ? 'rgba(56, 189, 248, 0.85)' : 'rgba(2, 132, 199, 0.85)',
       });
     }
 
     const draw = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // Dark Blue Cyber Radial Background Gradient
+      // Rich Navy Blue Radial Background Gradient
       const grad = ctx.createRadialGradient(
         width / 2,
         height / 2,
@@ -56,8 +56,8 @@ export const ParticleCanvas: React.FC = () => {
         height / 2,
         Math.max(width, height) / 1.1
       );
-      grad.addColorStop(0, '#0a1224');
-      grad.addColorStop(1, '#040814');
+      grad.addColorStop(0, '#0e1a30');
+      grad.addColorStop(1, '#060d1a');
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, width, height);
 
@@ -86,7 +86,7 @@ export const ParticleCanvas: React.FC = () => {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(59, 130, 246, ${0.3 * (1 - dist / 130)})`;
+            ctx.strokeStyle = `rgba(56, 189, 248, ${0.3 * (1 - dist / 130)})`;
             ctx.lineWidth = 0.8;
             ctx.stroke();
           }

@@ -8,18 +8,17 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        cyber: {
-          bg: '#070c1a',
-          card: '#101d36',
-          cardHover: '#16294d',
-          border: 'rgba(59, 130, 246, 0.25)',
-          accent: '#3b82f6',
-          cyan: '#06b6d4',
+        navy: {
+          bg: '#091224',
+          card: '#14243e',
+          cardHover: '#1a3052',
+          border: 'rgba(56, 189, 248, 0.25)',
+          accent: '#0284c7',
           sky: '#38bdf8',
+          cyan: '#06b6d4',
           emerald: '#10b981',
           amber: '#f59e0b',
           rose: '#ef4444',
-          purple: '#8b5cf6',
         },
       },
       fontFamily: {

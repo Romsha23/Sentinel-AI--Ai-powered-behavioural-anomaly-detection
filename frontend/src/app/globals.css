@@ -8,11 +8,11 @@
 /* ─── Base ───────────────────────────────────────────────────────────────── */
 @layer base {
   body {
-    background-color: #070c1a;
+    background-color: #091224;
     background-image:
-      radial-gradient(ellipse at 0% 0%,   rgba(59, 130, 246, 0.25) 0px, transparent 55%),
-      radial-gradient(ellipse at 100% 0%,  rgba(6, 182, 212, 0.20) 0px, transparent 50%),
-      radial-gradient(ellipse at 50% 100%, rgba(30, 58, 138, 0.20) 0px, transparent 55%);
+      radial-gradient(ellipse at 0% 0%,   rgba(2, 132, 199, 0.25) 0px, transparent 55%),
+      radial-gradient(ellipse at 100% 0%,  rgba(56, 189, 248, 0.20) 0px, transparent 50%),
+      radial-gradient(ellipse at 50% 100%, rgba(15, 23, 42, 0.30) 0px, transparent 55%);
     background-attachment: fixed;
     color: #f1f5f9;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
@@ -21,35 +21,35 @@
   }
 }
 
-/* ─── Dark Blue Glass Panel ──────────────────────────────────────────────── */
+/* ─── Rich Navy Blue Glass Panel ─────────────────────────────────────────── */
 .glass-panel,
 .smartnet-card {
   background: linear-gradient(
     135deg,
-    rgba(16, 29, 54, 0.85) 0%,
-    rgba(12, 22, 42, 0.92) 100%
+    rgba(20, 36, 62, 0.88) 0%,
+    rgba(14, 27, 48, 0.94) 100%
   ) !important;
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgba(59, 130, 246, 0.28) !important;
+  border: 1px solid rgba(56, 189, 248, 0.25) !important;
   box-shadow:
-    0 4px 24px rgba(4, 8, 20, 0.45),
-    inset 0 1px 0 rgba(59, 130, 246, 0.12) !important;
+    0 4px 24px rgba(4, 10, 24, 0.50),
+    inset 0 1px 0 rgba(56, 189, 248, 0.12) !important;
 }
 
 .glass-panel-hover {
   transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .glass-panel-hover:hover {
-  border-color: rgba(6, 182, 212, 0.55) !important;
+  border-color: rgba(56, 189, 248, 0.60) !important;
   box-shadow:
-    0 0 28px rgba(59, 130, 246, 0.35),
-    0 8px 32px rgba(4, 8, 20, 0.5) !important;
+    0 0 28px rgba(2, 132, 199, 0.35),
+    0 8px 32px rgba(4, 10, 24, 0.5) !important;
   transform: translateY(-1px);
 }
 
 .cyber-glow-blue {
-  box-shadow: 0 0 22px rgba(59, 130, 246, 0.45);
+  box-shadow: 0 0 22px rgba(56, 189, 248, 0.45);
 }
 
 .cyber-glow-red {
@@ -62,108 +62,114 @@
 
 .bg-cyber-bg,
 .bg-smartnet-bg {
-  background-color: #070c1a !important;
+  background-color: #091224 !important;
 }
 
 header {
-  background: rgba(12, 22, 42, 0.95) !important;
-  border-bottom-color: rgba(59, 130, 246, 0.22) !important;
+  background: rgba(14, 27, 48, 0.95) !important;
+  border-bottom-color: rgba(56, 189, 248, 0.22) !important;
   backdrop-filter: blur(16px);
 }
 
 .recharts-tooltip-wrapper .recharts-default-tooltip {
-  background: rgba(12, 22, 42, 0.95) !important;
-  border-color: rgba(59, 130, 246, 0.35) !important;
+  background: rgba(14, 27, 48, 0.95) !important;
+  border-color: rgba(56, 189, 248, 0.35) !important;
   border-radius: 10px !important;
   color: #f1f5f9 !important;
 }
 
 tbody tr:hover {
-  background-color: rgba(30, 58, 138, 0.35) !important;
+  background-color: rgba(30, 58, 100, 0.35) !important;
 }
 
 input, select, textarea {
-  background-color: rgba(16, 29, 54, 0.80) !important;
-  border-color: rgba(59, 130, 246, 0.30) !important;
+  background-color: rgba(20, 36, 62, 0.85) !important;
+  border-color: rgba(56, 189, 248, 0.30) !important;
   color: #f1f5f9 !important;
 }
 input::placeholder, textarea::placeholder {
-  color: rgba(147, 197, 253, 0.55) !important;
+  color: rgba(186, 230, 253, 0.55) !important;
 }
 input:focus, select:focus, textarea:focus {
-  border-color: rgba(6, 182, 212, 0.65) !important;
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.20) !important;
+  border-color: rgba(56, 189, 248, 0.70) !important;
+  box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.20) !important;
   outline: none !important;
 }
 
 .fixed.inset-0.bg-black\/80,
 .fixed.inset-0.bg-black\/85 {
-  background: rgba(4, 8, 20, 0.88) !important;
+  background: rgba(4, 10, 24, 0.90) !important;
 }
 
 ::-webkit-scrollbar { width: 5px; height: 5px; }
-::-webkit-scrollbar-track { background: rgba(7, 12, 26, 0.9); }
-::-webkit-scrollbar-thumb { background: rgba(59, 130, 246, 0.45); border-radius: 9999px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(6, 182, 212, 0.75); }
+::-webkit-scrollbar-track { background: rgba(9, 18, 36, 0.9); }
+::-webkit-scrollbar-thumb { background: rgba(56, 189, 248, 0.45); border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(2, 132, 199, 0.75); }
 
-/* Overrides for hardcoded dark purple/slate containers */
+/* Overrides for hardcoded container classes */
 .bg-slate-900,
 .bg-slate-900\/80,
 .bg-slate-900\/90,
 .bg-\[\#14052b\],
-.bg-\[\#1a0533\] {
-  background-color: rgba(10, 18, 36, 0.95) !important;
+.bg-\[\#1a0533\],
+.bg-\[\#070c1a\] {
+  background-color: rgba(11, 22, 42, 0.95) !important;
 }
 
 .bg-\[\#220e3f\],
 .bg-\[\#220e3f\]\/80,
 .bg-\[\#28114b\],
-.bg-\[\#2b134d\] {
-  background-color: rgba(16, 29, 54, 0.85) !important;
-  border-color: rgba(59, 130, 246, 0.25) !important;
+.bg-\[\#2b134d\],
+.bg-\[\#101d36\],
+.bg-\[\#101d36\]\/80 {
+  background-color: rgba(20, 36, 62, 0.88) !important;
+  border-color: rgba(56, 189, 248, 0.25) !important;
 }
 
 .bg-slate-950 {
-  background-color: rgba(7, 12, 26, 1) !important;
+  background-color: rgba(9, 18, 36, 1) !important;
 }
 
 .bg-slate-800,
 .bg-slate-800\/40,
 .bg-slate-800\/60 {
-  background-color: rgba(22, 38, 70, 0.75) !important;
+  background-color: rgba(28, 48, 80, 0.75) !important;
 }
 
 .border-slate-800,
 .border-purple-500\/20,
 .border-purple-500\/30,
-.border-purple-500\/40 {
-  border-color: rgba(59, 130, 246, 0.25) !important;
+.border-purple-500\/40,
+.border-blue-500\/20,
+.border-blue-500\/25,
+.border-blue-500\/30 {
+  border-color: rgba(56, 189, 248, 0.25) !important;
 }
 
 .border-slate-700 {
-  border-color: rgba(59, 130, 246, 0.35) !important;
+  border-color: rgba(56, 189, 248, 0.35) !important;
 }
 
 .divide-slate-800\/60 > * + * {
-  border-color: rgba(59, 130, 246, 0.18) !important;
+  border-color: rgba(56, 189, 248, 0.18) !important;
 }
 
 .bg-blue-600 {
-  background-color: #2563eb !important;
+  background-color: #0284c7 !important;
 }
 .hover\:bg-blue-500:hover {
-  background-color: #1d4ed8 !important;
+  background-color: #0369a1 !important;
 }
 .bg-blue-600\/20 {
-  background-color: rgba(37, 99, 235, 0.20) !important;
+  background-color: rgba(2, 132, 199, 0.20) !important;
 }
 .border-blue-500\/40 {
-  border-color: rgba(37, 99, 235, 0.40) !important;
+  border-color: rgba(2, 132, 199, 0.40) !important;
 }
 
 .recharts-polar-grid-concentric-polygon,
 .recharts-polar-grid-angle line {
-  stroke: rgba(59, 130, 246, 0.22) !important;
+  stroke: rgba(56, 189, 248, 0.22) !important;
 }
 
 /* ══════════════════════════════════════════════════════════════════════════ */
