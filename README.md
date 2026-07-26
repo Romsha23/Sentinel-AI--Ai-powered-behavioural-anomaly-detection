@@ -32,7 +32,7 @@ Sentinel AI is an enterprise-grade, full-stack cybersecurity platform designed t
 
 ---
 
-## Honeywell Requirements & Evaluation Matrix
+## Requirements & Evaluation Matrix
 
 | Requirement | Implementation Status | Sentinel AI Feature Component |
 | :--- | :---: | :--- |
