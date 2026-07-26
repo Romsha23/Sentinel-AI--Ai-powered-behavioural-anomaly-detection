@@ -12,6 +12,7 @@ if ROOT_DIR not in sys.path:
 
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
+from sqlalchemy.orm import Session
 from backend.app.core.config import settings
 from backend.app.db.database import Base, engine, SessionLocal
 from backend.app.db.models import LogEventModel, AlertModel
@@ -87,6 +88,7 @@ async def websocket_event_stream(websocket: WebSocket):
     """
     WebSocket endpoint pushing simulated incoming authentication log events every 1.5 seconds.
     Computes real-time anomaly scores, generates live alerts, and animates dashboard cards.
+    Critical/High risk events are automatically persisted to the AlertModel DB table.
     """
     await manager.connect(websocket)
     try:
@@ -154,7 +156,36 @@ async def websocket_event_stream(websocket: WebSocket):
                 "recommendations": risk_res["recommendations"],
                 "breakdown": risk_res["breakdown"]
             }
-            
+
+            # ── Auto-persist Critical/High alerts to DB ──────────────────────
+            if risk_res["priority"] in ("Critical", "High"):
+                try:
+                    db: Session = SessionLocal()
+                    alert_id = f"LIVE-{random.randint(10000, 99999)}"
+                    # Avoid duplicate IDs on the rare collision
+                    while db.query(AlertModel).filter(AlertModel.id == alert_id).first():
+                        alert_id = f"LIVE-{random.randint(10000, 99999)}"
+                    db.add(AlertModel(
+                        id=alert_id,
+                        timestamp=event_payload["timestamp"],
+                        entity_id=user_id,
+                        risk_score=risk_res["risk_score"],
+                        attack_type=attack_type,
+                        priority=risk_res["priority"],
+                        status="New",
+                        assigned_analyst="Unassigned",
+                        notes=f"Auto-detected via live stream. {risk_res['reasons'][0] if risk_res['reasons'] else ''}",
+                    ))
+                    db.commit()
+                except Exception as exc:
+                    pass  # Never let DB errors kill the WS loop
+                finally:
+                    try:
+                        db.close()
+                    except Exception:
+                        pass
+            # ────────────────────────────────────────────────────────────────
+
             await manager.broadcast(json.dumps(event_payload))
             
     except WebSocketDisconnect:

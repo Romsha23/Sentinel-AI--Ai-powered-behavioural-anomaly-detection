@@ -1,8 +1,19 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, BarChart, Bar } from 'recharts';
-import { BarChart3, Cpu, CheckCircle2, Award, Info, AlertTriangle } from 'lucide-react';
+import {
+  ResponsiveContainer,
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+  CartesianGrid,
+  BarChart,
+  Bar,
+  ReferenceLine,
+} from 'recharts';
+import { BarChart3, Cpu, CheckCircle2, Award, Grid3x3 } from 'lucide-react';
 import { apiClient, API_ENDPOINTS } from '@/lib/api';
 
 export const AnalyticsStudio: React.FC = () => {
@@ -127,6 +138,99 @@ export const AnalyticsStudio: React.FC = () => {
               </BarChart>
             </ResponsiveContainer>
           </div>
+        </div>
+
+      </div>
+
+      {/* PR Curve + Confusion Matrix Row */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        {/* Precision-Recall Curve */}
+        <div className="glass-panel rounded-2xl border border-slate-800 p-5 space-y-3">
+          <h3 className="text-xs font-semibold tracking-wide text-white">Precision-Recall Curve (Imbalanced Class Performance)</h3>
+          <p className="text-[11px] text-slate-400 leading-relaxed">
+            AUC-PR reflects model performance under class imbalance — more informative than ROC for rare attack detection.
+          </p>
+          <div className="h-52 w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart data={analytics?.pr_curve || []}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
+                <XAxis
+                  dataKey="recall"
+                  stroke="#64748b"
+                  tick={{ fontSize: 10 }}
+                  label={{ value: 'Recall', position: 'insideBottom', offset: -5, fill: '#64748b', fontSize: 10 }}
+                />
+                <YAxis
+                  stroke="#64748b"
+                  tick={{ fontSize: 10 }}
+                  domain={[0, 1]}
+                  label={{ value: 'Precision', angle: -90, position: 'insideLeft', fill: '#64748b', fontSize: 10 }}
+                />
+                <Tooltip
+                  contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', fontSize: 11 }}
+                  formatter={(v: any) => [v.toFixed(3), '']}
+                  labelFormatter={(l) => `Recall: ${l}`}
+                />
+                <ReferenceLine
+                  y={0.5}
+                  stroke="#475569"
+                  strokeDasharray="4 4"
+                  label={{ value: 'Random', position: 'right', fill: '#475569', fontSize: 10 }}
+                />
+                <Line
+                  type="monotone"
+                  dataKey="precision"
+                  stroke="#10b981"
+                  strokeWidth={2.5}
+                  dot={{ fill: '#10b981', r: 3 }}
+                  name="Precision"
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Confusion Matrix */}
+        <div className="glass-panel rounded-2xl border border-slate-800 p-5 space-y-3">
+          <div className="flex items-center space-x-2">
+            <Grid3x3 className="h-4 w-4 text-cyan-400" />
+            <h3 className="text-xs font-semibold tracking-wide text-white">Confusion Matrix (Isolation Forest Primary Model)</h3>
+          </div>
+          <p className="text-[11px] text-slate-400">
+            Rows = Actual class &nbsp;|&nbsp; Columns = Predicted class &nbsp;|&nbsp; Total = 10,000 test samples
+          </p>
+          {analytics?.confusion_matrix ? (() => {
+            const [[tn, fp], [fn, tp]] = analytics.confusion_matrix;
+            const total = tn + fp + fn + tp;
+            const cells = [
+              { label: 'True Negative', value: tn, sub: 'Correct Normal', bg: 'bg-emerald-950/60 border-emerald-800/50', text: 'text-emerald-300' },
+              { label: 'False Positive', value: fp, sub: 'Normal → Attack', bg: 'bg-amber-950/60 border-amber-800/50', text: 'text-amber-300' },
+              { label: 'False Negative', value: fn, sub: 'Attack → Normal', bg: 'bg-rose-950/60 border-rose-800/50', text: 'text-rose-300' },
+              { label: 'True Positive', value: tp, sub: 'Correct Attack', bg: 'bg-blue-950/60 border-blue-800/50', text: 'text-blue-300' },
+            ];
+            return (
+              <div className="space-y-3">
+                <div className="grid grid-cols-2 gap-2">
+                  {cells.map((c, i) => (
+                    <div key={i} className={`rounded-xl border p-3 ${c.bg} space-y-1`}>
+                      <div className={`font-mono text-2xl font-extrabold ${c.text}`}>{c.value.toLocaleString()}</div>
+                      <div className="text-[11px] font-semibold text-slate-200">{c.label}</div>
+                      <div className="text-[10px] text-slate-400">{c.sub}</div>
+                      <div className={`text-[10px] font-mono ${c.text}`}>{((c.value / total) * 100).toFixed(2)}%</div>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex justify-between text-[11px] text-slate-400 pt-1 border-t border-slate-800">
+                  <span>Total samples: <span className="font-mono text-white">{total.toLocaleString()}</span></span>
+                  <span>Accuracy: <span className="font-mono text-emerald-400">{(((tn + tp) / total) * 100).toFixed(1)}%</span></span>
+                  <span>F1: <span className="font-mono text-purple-400">{((2 * tp) / (2 * tp + fp + fn)).toFixed(3)}</span></span>
+                </div>
+              </div>
+            );
+          })() : (
+            <div className="text-center text-slate-500 text-xs py-8">No confusion matrix data available</div>
+          )}
         </div>
 
       </div>
