@@ -1,6 +1,25 @@
-# Sentinel AI — Behavioural Anomaly Detection Platform for Cybersecurity
+# 🛡️ Sentinel AI — Behavioural Anomaly Detection Platform for Cybersecurity
 
-Sentinel AI is an enterprise-grade, full-stack cybersecurity platform designed to satisfy the **Honeywell Problem Statement**. It models normal access behavior for users and devices, detects near-real-time intrusions via WebSockets, classifies multi-stage cyber attacks, and calculates explainable 0–100 risk scores with actionable incident response workflows.
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-3776AB.svg?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![Next.js 14](https://img.shields.io/badge/next.js-14+-000000.svg?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-009688.svg?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-3.4+-38B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+
+**Sentinel AI** is an enterprise-grade, full-stack cybersecurity platform designed for **Autonomous Behavioral Threat Detection and Incident Response**. It models normal user and device behaviors, ingests sub-second access telemetry via WebSockets, classifies multi-stage cyber attacks, and calculates explainable 0–100 risk scores with actionable security operations workflows.
+
+---
+
+## ✨ Key Features & Technical Highlights
+
+- **🎨 SMARTNET Dark Purple & Light Theme System**: Sleek glassmorphic SOC dashboard with royal dark purple background (`#14052b`), glowing neon accents, and a 1-click Dark/Light mode theme switcher.
+- **🔒 Behavior IQ Command Center**: Login interface featuring an interactive HTML5 constellation particle canvas, live floating SOC status badges, and one-click demo credentials sign-in.
+- **⚡ Near Real-Time Stream Ingestion**: Low-latency WebSocket streaming (`/ws/stream`) pushing live telemetry and anomaly alerts every 1.5 seconds.
+- **🧠 Multi-Model ML Engine**: Ensemble suite featuring **Isolation Forest** (unsupervised anomaly detection), **XGBoost** (multi-class attack pattern classifier), **One-Class SVM**, and **Autoencoder Neural Networks**.
+- **🧮 Explainable 5-Factor Risk Formula**: Transparent risk score calculation combining isolation scores, model confidences, Haversine geo-velocity anomalies, device novelty, and time deviations.
+- **▶️ Attack Replay Simulator**: Interactive step-by-step playback of multi-stage compromise scenarios for post-incident investigation.
+- **📊 Analyst SOC Alert Queue**: Real-time alert management with priority filters, status tracking, analyst assignment, notes, and direct entity timeline inspection.
+- **📄 Executive PDF Threat Reports**: Automated PDF generation summarizing high-risk incidents, top target resources, and recommended mitigation controls.
 
 ---
 
@@ -8,8 +27,8 @@ Sentinel AI is an enterprise-grade, full-stack cybersecurity platform designed t
 
 ```
                                ┌────────────────────────────────────────┐
-                               │          Next.js 15 SOC UI             │
-                               │  (Dashboard, Alerts, Timeline, Replay) │
+                               │       Next.js 14 SOC Dashboard         │
+                               │ (SMARTNET Purple Theme, Light/Dark)    │
                                └───────────────────┬────────────────────┘
                                                    │ HTTP REST / WebSockets
                                ┌───────────────────▼────────────────────┐
@@ -32,7 +51,21 @@ Sentinel AI is an enterprise-grade, full-stack cybersecurity platform designed t
 
 ---
 
-## Requirements & Evaluation Matrix
+## 🧮 Transparent 5-Factor Risk Score Formula
+
+$$\text{RiskScore} = 0.40 \cdot S_{\text{IsoForest}} + 0.30 \cdot P_{\text{XGBoost}} + 0.15 \cdot S_{\text{GeoVelocity}} + 0.10 \cdot S_{\text{DeviceNovelty}} + 0.05 \cdot S_{\text{TimeAnomaly}}$$
+
+| Factor Component | Weight | Description |
+| :--- | :---: | :--- |
+| **Isolation Forest ($S_{\text{IsoForest}}$)** | 40% | Unsupervised anomaly score normalized from tree path length decisions. |
+| **XGBoost Confidence ($P_{\text{XGBoost}}$)** | 30% | Multi-class probability confidence of identified attack scenario. |
+| **Geo-Velocity ($S_{\text{GeoVelocity}}$)** | 15% | Haversine distance over time ($\text{km/h}$). Speeds $>800\text{ km/h}$ trigger Impossible Travel alerts. |
+| **Device Novelty ($S_{\text{DeviceNovelty}}$)** | 10% | Detection of unverified hardware fingerprints or User-Agent anomalies. |
+| **Time Anomaly ($S_{\text{TimeAnomaly}}$)** | 5% | Off-peak login deviation against entity historical working hours. |
+
+---
+
+## 📊 Requirements & Feature Matrix
 
 | Requirement | Implementation Status | Sentinel AI Feature Component |
 | :--- | :---: | :--- |
@@ -43,74 +76,78 @@ Sentinel AI is an enterprise-grade, full-stack cybersecurity platform designed t
 | **Attack Classification** | ✅ Complete | XGBoost multi-class classifier mapping anomalies to Brute Force, Impossible Travel, etc. |
 | **Explainable AI Scoring** | ✅ Complete | Transparent 5-Factor Risk Formula + SHAP feature importance + AI Mitigation Actions |
 | **Analyst SOC Queue** | ✅ Complete | Priority queues, analyst assignment, notes, status changes, False Positive marking |
-| **Replay Attack Simulator** | ✅ Complete | Interactive "▶ Replay Attack" button playing multi-stage compromise scenarios step-by-step |
+| **Replay Attack Simulator** | ✅ Complete | Interactive "▶ Replay" button playing multi-stage compromise scenarios step-by-step |
 | **Multi-Model Benchmark** | ✅ Complete | Head-to-head research comparison (Isolation Forest, XGBoost, One-Class SVM, Autoencoder) |
 | **PDF Threat Reports** | ✅ Complete | Server-side PDF exporter with executive metrics, top anomalies, and action items |
-
----
-
-## 🧮 Transparent 5-Factor Risk Score Formula
-
-$$RiskScore = 0.40 \cdot S_{\text{IsoForest}} + 0.30 \cdot P_{\text{XGBoost}} + 0.15 \cdot S_{\text{GeoVelocity}} + 0.10 \cdot S_{\text{DeviceNovelty}} + 0.05 \cdot S_{\text{TimeAnomaly}}$$
-
-- **Isolation Forest Score ($S_{\text{IsoForest}}$)**: Unsupervised anomaly score normalized from decision function.
-- **XGBoost Confidence ($P_{\text{XGBoost}}$)**: Multi-class probability confidence of identified attack pattern.
-- **Geo-Velocity Anomaly ($S_{\text{GeoVelocity}}$)**: Calculated using Haversine formula distance over time ($\text{km/h}$). Speeds $>800\text{ km/h}$ trigger Impossible Travel alerts.
-- **Device Novelty ($S_{\text{DeviceNovelty}}$)**: Indicates unverified hardware fingerprints or User-Agent strings.
-- **Time Anomaly ($S_{\text{TimeAnomaly}}$)**: Off-peak login deviation against entity historical working hours.
-
----
-
-## 🧠 ML Model Selection Rationale
-
-> **Why Isolation Forest + XGBoost instead of pure LSTM / Recurrent Neural Networks?**
-> 1. **Data Imbalance & Lack of Labels**: Cybersecurity access logs typically contain $<3\%$ anomaly rates. Isolation Forest excels at unsupervised anomaly detection without requiring massive labeled attack data.
-> 2. **Sub-Millisecond Inference**: Isolation Forest and XGBoost execute predictions in $<2\text{ms}$, making them ideal for sub-second real-time streaming pipelines.
-> 3. **Explainability**: XGBoost feature importances and tree decision boundaries map directly to human-interpretable SHAP values and SOC reason codes.
 
 ---
 
 ## ⚡ Quickstart Guide
 
 ### Prerequisites
-- Python 3.10+
-- Node.js 18+ & npm
+- **Python 3.10+**
+- **Node.js 18+ & npm**
 
-### Windows: start the complete platform
+### Single Command Launch (Windows)
 
-After installing the backend and frontend dependencies once, run this from the
-project root:
+Run the automated startup script from the project root:
 
-```bat
-start.cmd
+```powershell
+.\start.ps1
 ```
 
-This starts FastAPI on `http://localhost:8000`, waits for it to become healthy,
-and then starts Next.js on `http://localhost:3000`. Stopping the frontend also
-stops the backend process started by the script.
+This initializes the virtual environment, starts FastAPI on `http://127.0.0.1:8000`, and launches Next.js on `http://localhost:3000` (or `3001`).
 
-### 1. Backend & ML Setup
+---
+
+### Step-by-Step Manual Setup
+
+#### 1. Backend & ML Setup
 ```bash
+# Navigate to backend directory
 cd backend
-python -m venv venv
+
+# Create & activate virtual environment
+python -m venv .venv
 # On Windows:
-venv\Scripts\activate
+.venv\Scripts\activate
 # On Linux/macOS:
-source venv/bin/activate
+source .venv/bin/activate
 
+# Install requirements & seed database with trained ML models
 pip install -r requirements.txt
-python seed.py       # Seeds 100,000 synthetic records and trains models
-uvicorn app.main:app --reload --port 8000
-```
-FastAPI server will run at `http://localhost:8000` with interactive API docs at `http://localhost:8000/docs`.
+python seed.py
 
-### 2. Frontend Setup
+# Start FastAPI server
+python -m uvicorn app.main:app --reload --port 8000
+```
+FastAPI server runs at `http://127.0.0.1:8000` with interactive API docs at `http://127.0.0.1:8000/docs`.
+
+#### 2. Frontend Setup
 ```bash
+# Navigate to frontend directory
 cd frontend
+
+# Install Node dependencies
 npm install
+
+# Start Next.js development server
 npm run dev
 ```
-Open `http://localhost:3000` in your browser to access the Sentinel AI SOC Dashboard.
+Open **`http://localhost:3000`** in your browser to access the Sentinel AI SOC Command Center.
+
+---
+
+## 📡 API Endpoints Reference
+
+| Endpoint | Method | Description |
+| :--- | :---: | :--- |
+| `/api/v1/dashboard/` | `GET` | Returns aggregated KPIs, alert timelines, attack breakdown, top resources, and geo-map coordinates. |
+| `/api/v1/alerts/` | `GET` | Query SOC alert queue with search, priority, attack type, and status filtering. |
+| `/api/v1/alerts/{id}` | `PUT` | Update alert status, assigned analyst, and notes. |
+| `/api/v1/ws/stream` | `WS` | WebSocket endpoint broadcasting near-real-time access events and anomaly scores. |
+| `/api/v1/auth/login` | `POST` | Authenticate security analyst and receive JWT access token. |
+| `/api/v1/report/pdf` | `GET` | Export downloadable executive PDF threat report. |
 
 ---
 
@@ -133,11 +170,18 @@ sentinel-ai/
 │   ├── risk_engine.py       # 5-Factor transparent risk score formula
 │   ├── trainer.py           # Isolation Forest, XGBoost, One-Class SVM, & Autoencoder
 │   └── explainability.py    # SHAP feature contributions & mitigation recommendations
-├── frontend/                # Next.js 15 App Router Frontend
+├── frontend/                # Next.js 14 App Router Frontend
 │   ├── src/
-│   │   ├── app/             # Main App layout & pages
-│   │   ├── components/      # Dashboard, Alerts, Entity Timeline, Replay, Analytics
+│   │   ├── app/             # Main App layout, login, register, and pages
+│   │   ├── components/      # Dashboard, Alerts, Entity Timeline, Replay, Analytics, Modals
+│   │   ├── context/         # AuthContext & ThemeContext (Light/Dark Mode)
 │   │   └── lib/             # Axios API client & WebSocket utilities
-├── docker/                  # Docker & Docker Compose configurations
-└── README.md                # System documentation & sitemap
+├── start.ps1                # Automated Windows startup script
+└── README.md                # System documentation & architectural reference
 ```
+
+---
+
+## 📄 License
+
+Distributed under the **MIT License**. See `LICENSE` for details.
