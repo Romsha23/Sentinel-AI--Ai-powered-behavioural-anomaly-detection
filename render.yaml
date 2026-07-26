@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: sentinel-ai-backend
+    runtime: python
+    rootDir: .
+    buildCommand: pip install -r backend/requirements.txt && python backend/seed.py
+    startCommand: uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHONPATH
+        value: /opt/render/project/src
+      - key: DATABASE_URL
+        value: sqlite:///./sentinel.db
+      - key: SECRET_KEY
+        generateValue: true
+    healthCheckPath: /
+    plan: free
